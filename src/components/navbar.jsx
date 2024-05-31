@@ -10,19 +10,25 @@ import {
   Transition,
 } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useLocation } from 'react-router-dom';
 
-const navigation = [
-  { name: 'Home', href: '#', current: true },
-  { name: 'Blogs', href: '#', current: false },
-  { name: 'gallery', href: '#', current: false },
-  { name: 'feedback', href: '#', current: false },
-]
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
 const MyNavbar = () => {
+
+    const location = useLocation();
+
+    const navigation = [
+        { name: 'Home', href: '/', current: location.pathname === '/' },
+        { name: 'Blogs', href: '/blog', current: location.pathname === '/blog' },
+        { name: 'gallery', href: '/gallery', current: location.pathname === '/gallery'},
+        { name: 'feedback', href: '/feedback', current: location.pathname === '/feedback'},
+      ]
+
   return (
     <Disclosure as="nav" className="bg-dark">
       {({ open }) => (
