@@ -5,13 +5,14 @@ import {
     CardFooter,
     Typography,
     Button,
+    
   } from "@material-tailwind/react";
-import {useState, useEffect} from "react";
-
-
+import {useState, useEffect,} from "react";
+import { useNavigate } from 'react-router-dom';
 
 
 const CardDefault = () => {
+    const navigate = useNavigate();
     const [blogs, setBlogs] = useState([]);
     const [tags, setTags] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -67,8 +68,10 @@ const CardDefault = () => {
                     {blog.konten.substring(0, 100) + "..."}
                 </Typography>
                 </CardBody>
-                <CardFooter className="pt-0">
-                <Button>Read More</Button>
+                <CardFooter className="pt-0" style={{backgroundColor: '#yourColor'}}>
+                <Button onClick={() => navigate(`/blog/${blog.id}`)}>
+                    Read More
+                </Button>
                 </CardFooter>
             </Card>
             ))}

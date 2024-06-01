@@ -2,6 +2,7 @@ import React from 'react';
 import MyNavbar from '../components/navbar';
 import   { useState, useEffect } from 'react';
 import CardDefault from '../card/blogCard';
+import Footer from '../components/footer';
 
 const Blog = () => {
     const [blogs, setBlogs] = useState([]);
@@ -41,14 +42,16 @@ const Blog = () => {
           </button>
         ))}
       </div>
-      {blogs.map(blog => (
+            {blogs.map(blog => (
         <div key={blog.id} className="mb-4">
           <h2 className="text-2xl">{blog.title}</h2>
           <p>{blog.summary}</p>
+          <Link to={`/blog/${blog.id}`}>Read More</Link>
         </div>
       ))}
-    </div>
-    <CardDefault />
+          </div>
+          <CardDefault />
+        <Footer />
         </>
   );
 };

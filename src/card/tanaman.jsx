@@ -105,7 +105,7 @@ const Tanaman = ({}) => {
             //   <button onClick={() => { setIsClosing(true); setTimeout(() => {setIsOpen(false); setSelectedItem(null);}, 300); }}>Close</button>
             // </div>
 
-            <Dialog size="l" open={isOpen} handler={openModal}>
+            <Dialog size="l" open={isOpen} handler={openModal} className='dialog-body'>
             <DialogHeader className="justify-between">
               <div className="flex items-center gap-1">
                 <Avatar

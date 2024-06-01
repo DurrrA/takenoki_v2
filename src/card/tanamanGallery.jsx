@@ -22,6 +22,7 @@ import {
   CardImage,
   Spinner
 } from "@material-tailwind/react";
+import './tanamanGallery.css';
 
 
 const TanamanGallery = ({}) => {
@@ -89,7 +90,7 @@ const TanamanGallery = ({}) => {
             //   <button onClick={() => { setIsClosing(true); setTimeout(() => {setIsOpen(false); setSelectedItem(null);}, 300); }}>Close</button>
             // </div>
 
-            <Dialog size="l" open={isOpen} handler={openModal}>
+            <Dialog size="l" open={isOpen} handler={openModal} className="dialog-body">
             <DialogHeader className="justify-between">
               <div className="flex items-center gap-1">
                 <Avatar
@@ -99,7 +100,7 @@ const TanamanGallery = ({}) => {
                 />
               </div>
             </DialogHeader>
-            <DialogBody>
+            <DialogBody className="dialog-body">
             <div className="flex items-center mb-10">
               <img
                 alt={selectedItem.nama}

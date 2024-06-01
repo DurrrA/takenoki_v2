@@ -8,6 +8,7 @@ import Gallery from './pages/gallery.jsx';
 import Feedback from './pages/feedback.jsx';
 import MyForm from './pages/Dashboard.jsx';
 import TentangKami from './pages/feedback.jsx';
+import BlogPost from './pages/BlogPost.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -19,6 +20,7 @@ root.render(
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/admin" element={<MyForm />} />
+        <Route path="/blog/:id" element={<BlogPost />} />
         <Route path="/tentangkami" element={<TentangKami />} />
       </Routes>
     </Router>

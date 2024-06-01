@@ -2,6 +2,7 @@ import React from 'react';
 import MyNavbar from '../components/navbar';
 import  { useState, useEffect } from 'react';
 import TanamanGallery from '../card/tanamanGallery';
+import Footer from '../components/footer';
 
 const Gallery = () => {
   // Fetch and display gallery images
@@ -15,6 +16,7 @@ const Gallery = () => {
     </div>
     <TanamanGallery />
     </div>
+    <Footer />
     </>
   );
 };

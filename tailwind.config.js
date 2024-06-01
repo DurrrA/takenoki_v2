@@ -8,6 +8,9 @@ export default withMT( {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      sans: ["Open Sans", "sans-serif"],
+    },
     extend: {
       colors: {
         "primary": "#3490dc",
