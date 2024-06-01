@@ -1,6 +1,7 @@
 import React from 'react';
 import MyNavbar from '../components/navbar';
 import   { useState, useEffect } from 'react';
+import CardDefault from '../card/blogCard';
 
 const Blog = () => {
     const [blogs, setBlogs] = useState([]);
@@ -47,6 +48,7 @@ const Blog = () => {
         </div>
       ))}
     </div>
+    <CardDefault />
         </>
   );
 };

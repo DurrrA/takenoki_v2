@@ -1,0 +1,155 @@
+import React, { useState } from 'react';
+
+function MyForm() {
+  const [value, setValue] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(value);
+  };
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Name:
+        <input type="text" value={value} onChange={handleChange} />
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
+  );
+}
+
+export default MyForm;
+
+import React from "react";
+import {
+  Button,
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  Avatar,
+  IconButton,
+  Typography,
+  Card,
+} from "@material-tailwind/react";
+ 
+export function DialogWithImage() {
+  const [open, setOpen] = React.useState(false);
+  const [isFavorite, setIsFavorite] = React.useState(false);
+ 
+  const handleOpen = () => setOpen((cur) => !cur);
+  const handleIsFavorite = () => setIsFavorite((cur) => !cur);
+ 
+  return (
+    <>
+      <Card
+        className="h-64 w-96 cursor-pointer overflow-hidden transition-opacity hover:opacity-90"
+        onClick={handleOpen}
+      >
+        <img
+          alt="nature"
+          className="h-full w-full object-cover object-center"
+          src="https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2717&q=80"
+        />
+      </Card>
+       <Dialog size="xl" open={open} handler={handleOpen}>
+        <DialogHeader className="justify-between">
+          <div className="flex items-center gap-3">
+            <Avatar
+              size="sm"
+
+              alt="logo"
+              src={logo}
+            />
+          </div>
+        </DialogHeader>
+        <DialogBody>
+          <img
+            alt="nature"
+            className="h-[48rem] w-200px h-auto rounded-lg object-cover object-center"
+            src="https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2717&q=80"
+          />
+          <Typography>
+          {selectedItem.nama}
+          </Typography>
+          <Typography>
+          {selectedItem.jenis}
+          </Typography>
+          <Typography>
+          {selectedItem.jenis}
+          </Typography>
+          <Typography>
+          {selectedItem.harga}
+          </Typography>
+          <Typography variant='small'>
+          {selectedItem.deskripsi}
+          </Typography>
+        </DialogBody>
+        <DialogFooter className="justify-between">
+          <div className="flex items-center gap-16">
+            <div>
+              <Typography variant="small" color="gray" className="font-normal">
+                Views
+              </Typography>
+              <Typography color="blue-gray" className="font-medium">
+                44,082,044
+              </Typography>
+            </div>
+          </div>
+          <Button
+            size="sm"
+            variant="outlined"
+            color="blue-gray"
+            className="mr-5 flex items-center"
+          >
+            Share
+          </Button>
+        </DialogFooter>
+      </Dialog>
+    </>
+  );
+}
+
+return (
+    <body className={isOpen ? 'modal-open' : ''}>
+      <div className="overlay">
+      </div>
+      {
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' , backgroundColor: 'dark'}}>
+      {isOpen && selectedItem && (
+        <div className={`modal ${isClosing ? 'modal-closing' : ''}`}>
+          <div className="modal-content">
+            <img src={selectedItem.gambar} alt={selectedItem.nama} style={{width: '200px', height: 'auto'}} />
+            <div className="modal-text">
+              <h2>{selectedItem.nama}</h2>
+              <h4>{selectedItem.jenis}</h4>
+              <h4>{selectedItem.daerah}</h4>
+              <h4>{selectedItem.harga}</h4>
+            </div>
+          </div>
+          <p>{selectedItem.deskripsi}</p>
+          <button onClick={() => { setIsClosing(true); setTimeout(() => {setIsOpen(false); setSelectedItem(null);}, 300); }}>Close</button>
+        </div>
+      )}
+      {products.slice(0, 5).map((item, index) => (
+        <button 
+          onClick={() => {setSelectedItem(item); setIsOpen(true);}} 
+          style={{ border: '', width: '200px', padding: '10px', margin: '5px', flex:'' , backgroundColor:'transparent'}}
+          title={item.nama} // This will display the name of the tanaman when the button is hovered over
+        >
+          <img 
+            src={item.gambar} 
+            alt={item.nama} 
+            style={{width: '200px', height: 'auto'}} 
+          />
+        </button>
+      ))}
+    </div>
+}
+    </body>
+);

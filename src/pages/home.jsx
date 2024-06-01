@@ -8,12 +8,12 @@ const Home = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedContent, setSelectedContent] = useState(null);
 
-  useEffect(() => {
-    // Fetch 3-4 blogs from API
-    fetch('/api/blogs?limit=4')
-      .then(response => response.json())
-      .then(data => setBlogs(data));
-  }, []);
+  // useEffect(() => {
+  //   // Fetch 3-4 blogs from API
+  //   fetch('/api/blogs?limit=4')
+  //     .then(response => response.json())
+  //     .then(data => setBlogs(data));
+  // }, []);
 
   return (
     <div className="">

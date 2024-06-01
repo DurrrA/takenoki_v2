@@ -11,6 +11,9 @@ import {
 } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useLocation } from 'react-router-dom';
+import logo from '/assets/Gardenista.png';
+import './navbar.css';
+
 
 
 
@@ -50,7 +53,7 @@ const MyNavbar = () => {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
                     <div className="flex space-x-4">
-                    <a href="#" className="text-white text-2xl font-bold">Gardenesia</a>
+                    <img src={logo} alt="Logo" className="logo" />
                     </div>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
