@@ -7,7 +7,7 @@ import Blog from './pages/blog.jsx';
 import Gallery from './pages/gallery.jsx';
 import Feedback from './pages/feedback.jsx';
 import MyForm from './pages/Dashboard.jsx';
-import TentangKami from './pages/TentangKami.jsx';
+import TentangKami from './pages/feedback.jsx';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

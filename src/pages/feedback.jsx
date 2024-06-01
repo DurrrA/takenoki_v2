@@ -1,72 +1,71 @@
-import React from 'react';
+import React from 'react'
+import {
+    Card,
+    Input,
+    Checkbox,
+    Button,
+    Typography,
+  } from "@material-tailwind/react";
 import MyNavbar from '../components/navbar';
-import { useState } from 'react';
 
-const Feedback = () => {
-    const [form, setForm] = useState({ username: '', feedback: '' });
-
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    // Submit feedback
-        fetch('/api/feedback', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(form),
-        }).then(response => response.json())
-            .then(data => {
-        // Handle success
-            console.log(data);
-            });
-    };
-
-
+const TentangKami = () => {
   return (
-    <>
-    <MyNavbar />
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Feedback</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-            Username
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="username"
-            name="username"
-            type="text"
-            value={form.username}
-            onChange={handleChange}
+    <div className="overflow-hidden">
+  <MyNavbar />
+  <div className="flex justify-center items-center h-screen bg-transparent">
+    <Card color="white" shadow={false} className="p-10">
+      <Typography variant="h4" color="blue-gray">
+        Feedback Form
+      </Typography>
+      <Typography color="gray" className="mt-1 font-normal">
+        Silahkan di isi form berikut untuk memberikan feedback 
+      </Typography>
+      <form className="mt-8 mb-2 w-80 max-w-screen-lg sm:w-96">
+        <div className="mb-1 flex flex-col gap-6">
+          <Typography variant="h6" color="blue-gray" className="-mb-3">
+            Your Name
+          </Typography>
+          <Input
+            size="lg"
+            placeholder="name@mail.com"
+            className="!border-t-blue-gray-200 focus:!border-t-gray-900"
+            labelProps={{
+              className: "before:content-none after:content-none",
+            }}
           />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="feedback">
-            Feedback
-          </label>
-          <textarea
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="feedback"
-            name="feedback"
-            value={form.feedback}
-            onChange={handleChange}
+          <Typography variant="h6" color="blue-gray" className="-mb-3">
+            Your Email
+          </Typography>
+          <Input
+            size="lg"
+            placeholder="name@mail.com"
+            className="!border-t-blue-gray-200 focus:!border-t-gray-900"
+            labelProps={{
+              className: "before:content-none after:content-none",
+            }}
           />
+          <Typography variant="h6" color="blue-gray" className="-mb-3">
+            Feedback For Us
+          </Typography>
+          <div className="flex items-center justify-between">
+            <textarea
+                type="text"
+                rows="5" // Adjust the number of rows as needed
+                placeholder="Your feedback"
+                color='white'
+                className="w-full p-3 border border-t-blue-gray-200 focus:border-t-gray-900 bg-white text-gray-900 rounded-lg"
+            ></textarea>
+          </div>
         </div>
-        <div className="flex items-center justify-between">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Submit
-          </button>
-        </div>
+        <Button className="mt-6" fullWidth>
+          Submit
+        </Button>
       </form>
-    </div>
-    </>
-  );
-};
+    </Card>
+  </div>
+</div>
 
-export default Feedback;
+  )
+}
+
+export default TentangKami

@@ -10,9 +10,11 @@ import {useState, useEffect} from "react";
 
 
 
+
 const CardDefault = () => {
     const [blogs, setBlogs] = useState([]);
     const [tags, setTags] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [selectedTag, setSelectedTag] = useState('');
     const filterByTag = (tag) => {
         setSelectedTag(tag);
@@ -21,34 +23,58 @@ const CardDefault = () => {
             .then(data => setBlogs(data));
     }
 
+    useEffect(() => {
+        const fetchBlogs = async () => {
+            setLoading(true);
 
+            try {
+                const response = await fetch('dummydatafinal.json')
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                setBlogs(data);
+                
+            } catch (error) {
+                setError(error);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        fetchBlogs();
+    }, []);
+            
 
     
     return (
         <div className="container mx-auto p-4">
-            <Card className="mt-6 w-96">
+            <div className="flex flex-wrap justify-start gap-5">
+            {blogs.map((blog, index) => (
+                <Card key={index} className="mt-6 w-96 mr-4">
                 <CardHeader color="blue-gray" className="relative h-56">
                 <img
-                    src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
-                    alt="card-image"
+                    src={blog.gambar}
+                    alt={blog.judul}
                 />
                 </CardHeader>
                 <CardBody>
                 <Typography variant="h5" color="blue-gray" className="mb-2">
-                    UI/UX Review Check
+                    {blog.judul}
                 </Typography>
                 <Typography>
-                    The place is close to Barceloneta Beach and bus stop just 2 min by
-                    walk and near to &quot;Naviglio&quot; where you can enjoy the main
-                    night life in Barcelona.
+                    {blog.konten.substring(0, 100) + "..."}
                 </Typography>
                 </CardBody>
                 <CardFooter className="pt-0">
                 <Button>Read More</Button>
                 </CardFooter>
             </Card>
+            ))}
+            </div>
         </div>
     );
-  }
+}
 
 export default CardDefault;

@@ -25,7 +25,6 @@ const Tanaman = ({}) => {
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
-    const [isClosing, setIsClosing] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
     
     const openModal = () => {
@@ -117,22 +116,28 @@ const Tanaman = ({}) => {
               </div>
             </DialogHeader>
             <DialogBody>
+            <div className="flex items-center mb-10">
               <img
                 alt={selectedItem.nama}
                 className="w-2px h-auto rounded-lg object-cover object-center"
                 src={selectedItem.gambar}
                 style={{width: '200px', height: 'auto'}}
               />
-              <Typography>
-              {selectedItem.nama}
-              </Typography>
-              <Typography>
-              {selectedItem.jenis}
-              </Typography>
-              <Typography>
-              {selectedItem.harga}
-              </Typography>
-              <Typography variant='small'>
+              <div className="ml-4">
+                <Typography
+                  className='justify-center'
+                >
+                  {selectedItem.nama}
+                </Typography>
+                <Typography>
+                  {selectedItem.jenis}
+                </Typography>
+                <Typography>
+                  {selectedItem.harga}
+                </Typography>
+              </div>
+            </div>
+              <Typography variant='small' className='justify-center'>
               {selectedItem.deskripsi}
               </Typography>
             </DialogBody>
@@ -164,7 +169,7 @@ const Tanaman = ({}) => {
             //   />
             // </button>
             <Card
-            className="h-64 w-96 cursor-pointer overflow-hidden transition-opacity hover:opacity-90"
+            className="h-64 w-96 cursor-pointer overflow-hidden transition-opacity hover:opacity-90 m-2"
             onClick={() => {setSelectedItem(item); setIsOpen(true);}}
           >
             <img
