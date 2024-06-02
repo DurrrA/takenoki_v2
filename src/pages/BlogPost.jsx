@@ -69,8 +69,8 @@ function BlogPost() {
               <div className="shadow-md rounded-lg overflow-hidden">
                 <div className="container mx-auto p-4">
                   <div className='flex items-center -space-x-3 justify-between'>
-                  <h1 className='mb-5 justify-normal font-sans'>{post.judul}</h1>
-                  <Typography className="text-sm font-lato"> {post.tanggal} </Typography>
+                    <h1 className='mb-5 justify-normal font-sans'>{post.judul}</h1>
+                    <Typography className="text-sm font-lato"> {post.tanggal} </Typography>
                   </div>
                   <img src={post.gambar} alt={post.nama} className='gap-4 mb-3' />
                   <p className='pl-3 gap-4 font-helvetica'>
