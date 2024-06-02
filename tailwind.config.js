@@ -48,7 +48,6 @@ export default withMT( {
     },
   },
   plugins: [
-    require('daisyui'),
     function ({ addUtilities }) {
       const newUtilities = {
         ".container": {

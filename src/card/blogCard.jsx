@@ -85,10 +85,13 @@ const CardDefault = () => {
                     {blog.konten.substring(0, 100) + "..."}
                 </Typography>
                 </CardBody>
-                <CardFooter className="pt-0" style={{backgroundColor: '#yourColor'}}>
-                <Button onClick={() => navigate(`/blog/${blog.id}`)}>
-                    Read More
-                </Button>
+                <CardFooter className="pt-0 flex items-center justify-between" style={{backgroundColor: 'transparent'}}>
+                <div className="flex items-center -space-x-3">
+                    <Button onClick={() => navigate(`/blog/${blog.id}`)}>
+                        Read More
+                    </Button>
+                </div>
+                <Typography className="font-lato">{blog.tanggal}</Typography>
                 </CardFooter>
             </Card>
             ))}
