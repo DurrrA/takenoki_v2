@@ -153,3 +153,78 @@ return (
 }
     </body>
 );
+
+<       TabsBody className="grid grid-cols-1 gap-4 ">
+        {products.map(({ value, images }) => (
+          <TabPanel
+            className="grid grid-cols-2 gap-4 md:grid-cols-3"
+            key={value}
+            value={value}
+          >
+            {images?.map(({ imageLink }, index) => (
+              <div key={index}>
+                <img
+                  className="h-40 w-full max-w-full rounded-lg object-cover object-center"
+                  src={imageLink}
+                  alt="image-photo"
+                />
+              </div>
+            ))}
+          </TabPanel>
+        ))}
+      </TabsBody>
+
+return (
+    <div className={isOpen ? 'modal-open' : ''}>
+    <Tabs value={selectedItem ? selectedItem.daerah : uniqueDaerahs[0]}>
+      <TabsHeader>
+        {uniqueDaerahs.map((daerah, index) => (
+          <Tab key={`${daerah}-${index}`} value={daerah} style={{backgroundColor: 'dark'}} onClick={() => setSelectedItem(products.find(item => item.daerah === daerah))}>
+            {daerah}
+          </Tab>
+        ))}
+      </TabsHeader>
+      <TabsBody className="grid grid-cols-1 gap-4 ">
+{uniqueDaerahs.map((daerah, index) => (
+  <TabPanel
+    className="grid grid-cols-2 gap-4 md:grid-cols-3"
+    key={`${daerah}-${index}`}
+    value={daerah}
+  >
+    <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', backgroundColor: 'dark' }}>
+      {isOpen && selectedItem && (
+        <div className={`modal ${isClosing ? 'modal-closing' : ''}`}>
+          <div className="modal-content">
+            <img src={selectedItem.gambar} alt={selectedItem.nama} style={{width: '200px', height: 'auto'}} />
+            <div className="modal-text">
+              <h2>{selectedItem.nama}</h2>
+              <h4>{selectedItem.jenis}</h4>
+              <h4>{selectedItem.daerah}</h4>
+              <h4>{selectedItem.harga}</h4>
+            </div>
+          </div>
+          <p>{selectedItem.deskripsi}</p>
+          <button onClick={() => { setIsClosing(true); setTimeout(() => {setIsOpen(false); setSelectedItem(null);}, 300); }}>Close</button>
+        </div>
+      )}
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+        {products.filter(product => product.daerah === daerah).map((item, index) => (
+          <button 
+            key={index} 
+            style={{ border: '1px solid #ccc', width: '200px', padding: '10px', margin: '10px', flex:'20%' }}
+            onClick={() => {setSelectedItem(item); setIsOpen(true);}}
+          >
+            <img src={item.gambar} alt={daerah} style={{width: '2000px', height: 'auto'}} />
+          </button>
+        ))}
+      </div>
+    </div>
+    <div className="overlay"></div>
+  </TabPanel>
+))}
+</TabsBody>
+<div className="overlay"></div>
+</Tabs>
+</div>
+);
+

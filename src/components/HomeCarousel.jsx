@@ -1,6 +1,6 @@
 import React from 'react'
 
-const welcomePage = () => {
+const HomeCarousel = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const welcomePage = () => {
   )
 }
 
-export default welcomePage
+export default HomeCarousel

@@ -33,6 +33,7 @@ const TanamanGallery = ({}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [isHovered, setIsHovered] = useState(null);
     const uniqueDaerahs = [...new Set(products.map(item => item.daerah))];
     const openModal = () => {
       setIsOpen(true);
@@ -59,13 +60,21 @@ const TanamanGallery = ({}) => {
           setLoading(false);
         }
       }
-    
-      fetchProducts();
+      const timer = setTimeout(() => {
+        setLoading(true);
+        fetchProducts();
+      }, 500);
+
+      return () => clearTimeout(timer); // This will clear the timer when the component unmounts
     }, []);
 
 
     if (loading) {
-        return <h1>Loading...</h1>
+        return (
+          <div className="flex items-center justify-center min-h-screen">
+              <span className="loading loading-dots loading-lg"></span>
+          </div>
+      );
     }
     if (error) {
         return <h1>Error: {error.message}</h1>
@@ -90,7 +99,7 @@ const TanamanGallery = ({}) => {
             //   <button onClick={() => { setIsClosing(true); setTimeout(() => {setIsOpen(false); setSelectedItem(null);}, 300); }}>Close</button>
             // </div>
 
-            <Dialog size="l" open={isOpen} handler={openModal} className="dialog-body">
+            <Dialog size="l" open={isOpen} handler={openModal} className="dialog-body" title={selectedItem.nama}>
             <DialogHeader className="justify-between">
               <div className="flex items-center gap-1">
                 <Avatar
@@ -100,7 +109,7 @@ const TanamanGallery = ({}) => {
                 />
               </div>
             </DialogHeader>
-            <DialogBody className="dialog-body">
+            <DialogBody >
             <div className="flex items-center mb-10">
               <img
                 alt={selectedItem.nama}
@@ -110,14 +119,14 @@ const TanamanGallery = ({}) => {
               />
               <div className="ml-4">
                 <Typography
-                  className='justify-center'
+                  className='justify-center font-bold text-lg'
                 >
                   {selectedItem.nama}
                 </Typography>
-                <Typography>
+                <Typography className='text-gray-500'>
                   {selectedItem.jenis}
                 </Typography>
-                <Typography>
+                <Typography className='text-green-500 font-bold'>
                   {selectedItem.harga}
                 </Typography>
               </div>
@@ -127,13 +136,11 @@ const TanamanGallery = ({}) => {
               </Typography>
             </DialogBody>
             <DialogFooter className="justify-between">
-              <div className="flex items-center gap-16">
-              </div>
               <Button
                 size="sm"
                 variant="outlined"
                 color="blue-gray"
-                className="mr-5 flex items-center"
+                className="mr-5 flex items-center gap-2"
                 onClick={closeModal}
               >
                 Close
@@ -142,20 +149,27 @@ const TanamanGallery = ({}) => {
           </Dialog>
           )}
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-        {products.map((item, index) => (
-            <Card
-            className="h-64 w-96 cursor-pointer overflow-hidden transition-opacity hover:opacity-90 m-2"
-            onClick={() => {setSelectedItem(item); setIsOpen(true);}}
-            key={index}
-          >
-            <img
-              alt={item.nama}
-              className="h-full w-full object-cover object-center"
-              src={item.gambar}
-            />
-          </Card>
-          ))}
+  {products.map((item, index) => (
+    <div
+      className="h-64 w-96 cursor-pointer overflow-hidden transition-opacity m-2 relative"
+      onMouseEnter={() => setIsHovered(index)}
+      onMouseLeave={() => setIsHovered(null)}
+      onClick={() => {setSelectedItem(item); setIsOpen(true);}}
+      key={index}
+    >
+      <img
+        alt={item.nama}
+        className={`h-full w-full object-cover object-center ${isHovered === index ? 'opacity-50' : ''}`}
+        src={item.gambar}
+      />
+      {isHovered === index && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-lg font-bold">
+          {item.nama}
         </div>
+      )}
+    </div>
+  ))}
+</div>
         </div>
         }
         <div className="overlay"></div>

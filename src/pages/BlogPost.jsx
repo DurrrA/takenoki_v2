@@ -23,7 +23,11 @@ function BlogPost() {
         if (!post) {
           throw new Error('Post not found');
         }
-        setPost(post);
+        // Assuming post.konten is a string
+        const formattedContent = post.konten 
+        ? post.konten.split('\n').flatMap((line, index) => index !== 0 ? [<br key={index + 'break'} />, <p key={index + 'line'}>{line}</p>] : [<p key={index + 'line'}>{line}</p>])
+        : null;
+      setPost({...post, konten: formattedContent});
       } catch (error) {
         setError(error);
       } finally {
@@ -34,29 +38,31 @@ function BlogPost() {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <span className="loading loading-ring loading-lg"></span>
   }
   if (error) {
     return <h1>Error: {error.message}</h1>
   }
 
   return (
-        <>
-        <MyNavbar />
+    <>
+      <MyNavbar />
+      <div className="content">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-            <div className="md:col-span-2">
-                <div className=" shadow-md rounded-lg overflow-hidden">
-                    <div className="content">
-                        <div className="container mx-auto p-4">
-                            <h1>{post.judul}</h1>
-                            <p>{post.konten}</p>
-                        </div>
-                    </div>
-                </div>
+          <div className="md:col-span-2">
+            <div className="shadow-md rounded-lg overflow-hidden">
+              <div className="container mx-auto p-4">
+                <h1 className='mb-5'>{post.judul}</h1>
+                <p className='gap-4'>
+                  {post.konten}
+                </p>
+              </div>
             </div>
+          </div>
         </div>
-        <Footer />
-        </>
+      </div>
+      <Footer />
+    </>
   );
 }
 

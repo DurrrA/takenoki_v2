@@ -17,6 +17,7 @@ const CardDefault = () => {
     const [tags, setTags] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedTag, setSelectedTag] = useState('');
+    const [error, setError] = useState(null);
     const filterByTag = (tag) => {
         setSelectedTag(tag);
         fetch(`/api/blogs?tag=${tag}`)
@@ -43,9 +44,25 @@ const CardDefault = () => {
                 setLoading(false);
             }
         }
-
-        fetchBlogs();
+        const timer = setTimeout(() => {
+            setLoading(true);
+            fetchBlogs();
+          }, 500);
+        
+          return () => clearTimeout(timer); // This will clear the timer when the component unmounts
     }, []);
+
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <span className="loading loading-dots loading-lg"></span>
+            </div>
+        );
+        }
+    if (error) {
+        return <h1>Error: {error.message}</h1>
+    }
+
             
 
     

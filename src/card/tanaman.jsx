@@ -26,6 +26,7 @@ const Tanaman = ({}) => {
     const [products, setProducts] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [isHovered, setIsHovered] = useState(null);
     
     const openModal = () => {
       setIsOpen(true);
@@ -44,8 +45,6 @@ const Tanaman = ({}) => {
     
     useEffect(() => {
       const fetchProducts = async () => {
-        setLoading(true);
-        
         try {
           const response = await fetch('dataTanaman.json');
           
@@ -63,21 +62,20 @@ const Tanaman = ({}) => {
         }
       }
     
-      fetchProducts();
-    }, []);
-    
-    useEffect(() => {
       const timer = setTimeout(() => {
-        setLoading(false);
-      }, 2000);
-
+        setLoading(true);
+        fetchProducts();
+      }, 500);
+    
       return () => clearTimeout(timer); // This will clear the timer when the component unmounts
-  }, []);
+    }, []);
 
-    if (loading) {
-        return <div className="spinner-container">
-                  <Spinner/>
-                </div>
+  if (loading) {
+    return (
+        <div className="flex items-center justify-center min-h-screen">
+            <span className="loading loading-dots loading-lg"></span>
+        </div>
+    );
     }
     if (error) {
         return <h1>Error: {error.message}</h1>
@@ -123,19 +121,56 @@ const Tanaman = ({}) => {
                 src={selectedItem.gambar}
                 style={{width: '200px', height: 'auto'}}
               />
+              <Dialog size="l" open={isOpen} handler={openModal} className='dialog-body'>
+            <DialogHeader className="justify-between">
+              <div className="flex items-center gap-1">
+                <Avatar
+                  size="md"
+                  alt="logo"
+                  src="/assets/Gardenista.png"
+                />
+              </div>
+            </DialogHeader>
+            <DialogBody>
+            <div className="flex items-center mb-10">
+              <img
+                alt={selectedItem.nama}
+                className="w-2px h-auto rounded-lg object-cover object-center"
+                src={selectedItem.gambar}
+                style={{width: '200px', height: 'auto'}}
+              />
               <div className="ml-4">
                 <Typography
-                  className='justify-center'
+                  className='justify-center font-bold text-lg'
                 >
                   {selectedItem.nama}
                 </Typography>
-                <Typography>
+                <Typography className='text-gray-500'>
                   {selectedItem.jenis}
                 </Typography>
-                <Typography>
+                <Typography className='text-green-500 font-bold'>
                   {selectedItem.harga}
                 </Typography>
               </div>
+            </div>
+              <Typography variant='small' className='justify-center'>
+              {selectedItem.deskripsi}
+              </Typography>
+            </DialogBody>
+            <DialogFooter className="justify-between">
+              <div className="flex items-center gap-16">
+              </div>
+              <Button
+                size="sm"
+                variant="outlined"
+                color="blue-gray"
+                className="mr-5 flex items-center"
+                onClick={closeModal}
+              >
+                Close
+              </Button>
+            </DialogFooter>
+          </Dialog>
             </div>
               <Typography variant='small' className='justify-center'>
               {selectedItem.deskripsi}
@@ -170,6 +205,8 @@ const Tanaman = ({}) => {
             // </button>
             <Card
             className="h-64 w-96 cursor-pointer overflow-hidden transition-opacity hover:opacity-90 m-2"
+            onMouseEnter={() => setIsHovered(index)}
+              onMouseLeave={() => setIsHovered(null)}
             onClick={() => {setSelectedItem(item); setIsOpen(true);}}
           >
             <img
@@ -177,6 +214,11 @@ const Tanaman = ({}) => {
               className="h-full w-full object-cover object-center"
               src={item.gambar}
             />
+            {isHovered === index && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-lg font-bold">
+                  {item.nama}
+                </div>
+              )}
           </Card>
           ))}
         </div>
