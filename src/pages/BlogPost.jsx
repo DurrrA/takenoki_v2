@@ -6,12 +6,13 @@ import './BlogPost.css';
 import Typography from '@material-tailwind/react';
 import { Button } from '@material-tailwind/react';
 import btnFeedback from '../card/btnFeedback';
+import { Link } from 'react-router-dom';
 
 function BlogPost() {
   const { id } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(null);;
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -62,6 +63,7 @@ function BlogPost() {
         <MyNavbar />
         <div className="content flex-grow">
           <div className='container mx-auto p-4'>
+          <Link to="/blog" className="btn btn-transparent px-4 py-2 ">Back to Blog</Link>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
             <div className="md:col-span-2 bg-transparent rounded-lg flex flex-col md:flex-row shadow-md shadow-gray-400">
               <div className="shadow-md rounded-lg overflow-hidden">

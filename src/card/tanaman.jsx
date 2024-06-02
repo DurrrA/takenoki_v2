@@ -125,17 +125,15 @@ const Tanaman = ({}) => {
                 src={selectedItem.gambar}
                 style={{width: '200px', height: 'auto'}}
               />
-              <div className="ml-4">
-                <Typography
-                  className='justify-center font-bold text-lg'
-                >
+              <div className="mt-4 md:mt-0 md:ml-4 md:grid-rows-3 grid-rows-1 grid text-center md:text-left">
+                <Typography variant="h5" className="font-bold text-gray-800 mb-2" style={{ fontFamily: 'Poppins' }}>
                   {selectedItem.nama}
                 </Typography>
-                <Typography className='text-gray-500'>
+                <Typography className="text-gray-800 mb-1" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
                   {selectedItem.jenis}
                 </Typography>
-                <Typography className='text-green-500 font-bold'>
-                  {selectedItem.harga}
+                <Typography className="text-gray-800 font-light mb-2" style={{ fontFamily: 'Roboto' }}>
+                  Rp.{selectedItem.harga}
                 </Typography>
               </div>
             </div>
