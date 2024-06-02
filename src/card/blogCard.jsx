@@ -70,8 +70,8 @@ const CardDefault = () => {
         <div className="container mx-auto p-4">
             <div className="flex flex-wrap justify-start gap-5">
             {blogs.map((blog, index) => (
-                <Card key={index} className="mt-6 w-96 mr-4">
-                <CardHeader color="blue-gray" className="relative h-56">
+                <Card key={index} className="mt-6 w-96 mr-4 bg-white shadow-md shadow-gray-400">
+                <CardHeader color="transparent" className="relative h-56 shadow-md shadow-gray-400">
                 <img
                     src={blog.gambar}
                     alt={blog.judul}

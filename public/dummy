@@ -228,3 +228,11 @@ return (
 </div>
 );
 
+/*{
+  "nama" : "Serai",
+    "jenis" : "Tanaman Pangan",
+    "daerah" : "Bogor Barat",
+    "harga" : 15000,
+    "deskripsi" : "Cymbopogon , juga dikenal sebagai serai , rumput kawat berduri , kepala halus , kepala berminyak , rumput Cochin , rumput Malabar , rumput serai atau rumput demam , adalah genus tanaman pulau Asia , Afrika , Australia , dan tropis dalam keluarga rumput. Beberapa spesies (khususnya Cymbopogon citratus ) umumnya dibudidayakan sebagai kuliner dan tanaman obat karena aromanya yang mirip dengan lemon ( Citrus limon ).",
+    "gambar" : "/assets/Serai.jpg"
+},*/

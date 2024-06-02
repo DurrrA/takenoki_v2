@@ -3,6 +3,9 @@ import { useParams } from 'react-router-dom';
 import MyNavbar from '../components/navbar';
 import Footer from '../components/footer';
 import './BlogPost.css';
+import Typography from '@material-tailwind/react';
+import { Button } from '@material-tailwind/react';
+import btnFeedback from '../card/btnFeedback';
 
 function BlogPost() {
   const { id } = useParams();
@@ -59,18 +62,27 @@ function BlogPost() {
         <MyNavbar />
         <div className="content flex-grow">
           <div className='container mx-auto p-4'>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-              <div className="md:col-span-2">
-                <div className="shadow-md rounded-lg overflow-hidden">
-                  <div className="container mx-auto p-4">
-                    <h1 className='mb-5 justify-normal'>{post.judul}</h1>
-                    <img src={post.gambar} alt={post.nama} className='gap-4 mb-3' />
-                    <p className='gap-4'>
-                      {post.konten}
-                    </p>
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+            <div className="md:col-span-2 bg-transparent rounded-lg flex flex-col md:flex-row shadow-md shadow-gray-400">
+              <div className="shadow-md rounded-lg overflow-hidden">
+                <div className="container mx-auto p-4">
+                  <h1 className='mb-5 justify-normal font-sans'>{post.judul}</h1>
+                  <img src={post.gambar} alt={post.nama} className='gap-4 mb-3' />
+                  <p className='pl-3 gap-4 font-helvetica'>
+                    {post.konten}
+                  </p>
                 </div>
               </div>
+              </div>
+              <div className="md:ml-4 bg-transparent p-4">
+                <div className='shadow-md rounded-lg mt-8 h-30 text-justify bg-gray-900 p-4'>
+                  {post.tag.map((tag, index) => (
+                    <span key={index} className='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>
+                      {tag}
+                    </span>
+                  ))}
+                  </div>
+                </div>
             </div>
           </div>
         </div>

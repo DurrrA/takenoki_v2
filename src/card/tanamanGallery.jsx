@@ -20,7 +20,12 @@ import {
   CardContent,
   CardFooter,
   CardImage,
-  Spinner
+  Spinner,
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Checkbox,
 } from "@material-tailwind/react";
 import './tanamanGallery.css';
 
@@ -85,68 +90,47 @@ const TanamanGallery = ({}) => {
         {
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' , backgroundColor: 'dark'}}>
           {isOpen && selectedItem && (
-            // <div className={`modal ${isClosing ? 'modal-closing' : ''}`}>
-            //   <div className="modal-content">
-            //     <img src={selectedItem.gambar} alt={selectedItem.nama} style={{width: '200px', height: 'auto'}} />
-            //     <div className="modal-text">
-            //       <h2>{selectedItem.nama}</h2>
-            //       <h4>{selectedItem.jenis}</h4>
-            //       <h4>{selectedItem.daerah}</h4>
-            //       <h4>{selectedItem.harga}</h4>
-            //     </div>
-            //   </div>
-            //   <p>{selectedItem.deskripsi}</p>
-            //   <button onClick={() => { setIsClosing(true); setTimeout(() => {setIsOpen(false); setSelectedItem(null);}, 300); }}>Close</button>
-            // </div>
-
-            <Dialog size="l" open={isOpen} handler={openModal} className="dialog-body" title={selectedItem.nama}>
-            <DialogHeader className="justify-between">
-              <div className="flex items-center gap-1">
-                <Avatar
-                  size="md"
-                  alt="logo"
-                  src="/assets/Gardenista.png"
-                />
-              </div>
-            </DialogHeader>
-            <DialogBody >
-            <div className="flex items-center mb-10">
-              <img
-                alt={selectedItem.nama}
-                className="w-2px h-auto rounded-lg object-cover object-center"
-                src={selectedItem.gambar}
-                style={{width: '200px', height: 'auto'}}
-              />
-              <div className="ml-4">
-                <Typography
-                  className='justify-center font-bold text-lg'
-                >
-                  {selectedItem.nama}
-                </Typography>
-                <Typography className='text-gray-500'>
-                  {selectedItem.jenis}
-                </Typography>
-                <Typography className='text-green-500 font-bold'>
-                  {selectedItem.harga}
-                </Typography>
-              </div>
-            </div>
-              <Typography variant='small' className='justify-center'>
-              {selectedItem.deskripsi}
-              </Typography>
-            </DialogBody>
-            <DialogFooter className="justify-between">
-              <Button
-                size="sm"
-                variant="outlined"
-                color="blue-gray"
-                className="mr-5 flex items-center gap-2"
-                onClick={closeModal}
-              >
-                Close
-              </Button>
-            </DialogFooter>
-          </Dialog>
+            <Dialog size="l" open={isOpen} onClose={openModal} className="dialog-body">
+  <DialogHeader className="flex justify-between items-center">
+    <div className="flex items-center gap-2">
+      <Avatar size="md" alt="logo" src="/assets/Gardenista.png" />
+    </div>
+  </DialogHeader>
+  <DialogBody>
+    <div className="container mx-auto flex flex-col items-center md:flex-row mb-6">
+      <img
+        alt={selectedItem.nama}
+        className="w-full md:w-1/2 rounded-lg object-cover"
+        src={selectedItem.gambar}
+        style={{ maxWidth: '200px', height: 'auto' }}
+      />
+      <div className="mt-4 md:mt-0 md:ml-4 md:grid-rows-3 grid-rows-1 grid text-center md:text-left">
+        <Typography variant="h5" className="font-bold text-gray-800 mb-2" style={{ fontFamily: 'Poppins' }}>
+          {selectedItem.nama}
+        </Typography>
+        <Typography className="text-gray-800 mb-1" style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}>
+          {selectedItem.jenis}
+        </Typography>
+        <Typography className="text-gray-800 font-light mb-2" style={{ fontFamily: 'Roboto' }}>
+          Rp.{selectedItem.harga}
+        </Typography>
+      </div>
+    </div>
+    <Typography variant="body1" className="text-gray-700" style={{ fontFamily: 'Roboto' }}>
+      {selectedItem.deskripsi}
+    </Typography>
+  </DialogBody>
+  <DialogFooter className="flex justify-end">
+    <Button
+      size="small"
+      variant="outlined"
+      color="primary"
+      onClick={closeModal}
+    >
+      Close
+    </Button>
+  </DialogFooter>
+</Dialog>
           )}
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
   {products.map((item, index) => (
@@ -159,7 +143,7 @@ const TanamanGallery = ({}) => {
     >
       <img
         alt={item.nama}
-        className={`h-full w-full object-cover object-center ${isHovered === index ? 'opacity-50' : ''}`}
+        className={`h-full w-full rounded-lg object-cover object-center ${isHovered === index ? 'opacity-50' : ''}`}
         src={item.gambar}
       />
       {isHovered === index && (

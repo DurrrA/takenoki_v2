@@ -4,6 +4,7 @@ import   { useState, useEffect } from 'react';
 import CardDefault from '../card/blogCard';
 import Footer from '../components/footer';
 import './App.css';
+import btnFeedback from '../card/btnFeedback';
 
 const Blog = () => {
     const [blogs, setBlogs] = useState([]);
@@ -53,6 +54,7 @@ const Blog = () => {
                 <Link to={`/blog/${blog.id}`}>Read More</Link>
               </div>
             ))}
+        <btnFeedback />
         </div>
         <CardDefault />
         </div>

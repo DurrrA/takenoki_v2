@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import MyNavbar from '../components/navbar'
+import MyNavbar from '../components/navbar';
 import Tanaman from '../card/tanaman';
 import Footer from '../components/footer';
 import './App.css';
-
+import BtnFeedback from '../card/btnFeedback';
+import HomeCarousel from '../components/HomeCarousel';
+import FAQ from '../components/faq';
 
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
@@ -20,21 +22,22 @@ const Home = () => {
 
   return (
     <>
-      <div className="content">
-          <MyNavbar />
-
+      <MyNavbar />
+          <HomeCarousel/>
         <div className="container mx-auto p-4">
-          <h1 className="text-3xl font-bold mb-4">Home</h1>
+        <div className="content">
           {blogs.map(blog => (
-            <div key={blog.id} className="mb-4">
-              <h2 className="text-2xl">{blog.title}</h2>
+            <div key={blog.id} className="mb-4 p-4 bg-gray-100 rounded shadow">
+              <h2 className="text-2xl mb-2">{blog.title}</h2>
               <p>{blog.summary}</p>
             </div>
           ))}
+          <Tanaman />
+          <FAQ/>
         </div>
-        <Tanaman />
-      <Footer />
+        <BtnFeedback style={{ position: 'absolute', bottom: '150px', right: '170px' }} />
       </div>
+      <Footer />
     </>
   );
 };

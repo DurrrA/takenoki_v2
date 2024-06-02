@@ -10,6 +10,13 @@ export default withMT( {
   theme: {
     fontFamily: {
       sans: ["Open Sans", "sans-serif"],
+      helvetica: ["Helvetica", "sans-serif"],
+      serif: ["Merriweather", "serif"],
+      mono: ["Roboto Mono", "monospace"],
+      georgia: ["Georgia", "serif"],
+      poppins: ["Poppins", "sans-serif"],
+      arial: ["Arial", "sans-serif"],
+      lato: ['Lato', 'sans-serif'],
     },
     extend: {
       colors: {

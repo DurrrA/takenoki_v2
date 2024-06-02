@@ -26,11 +26,10 @@ const MyNavbar = () => {
         { name: 'Home', href: '/', current: location.pathname === '/' },
         { name: 'Blogs', href: '/blog', current: location.pathname === '/blog' },
         { name: 'gallery', href: '/gallery', current: location.pathname === '/gallery'},
-        { name: 'feedback', href: '/feedback', current: location.pathname === '/feedback'},
       ]
 
   return (
-    <Disclosure as="nav" className="bg-dark">
+    <Disclosure as="nav" className="bg-dark font-lato">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -61,7 +60,7 @@ const MyNavbar = () => {
                           href={item.href}
                           className={classNames(
                             item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                            'rounded-md px-3 py-2 text-sm font-medium'
+                            'rounded-md px-3 py-2 text-sm font-lato font-bold'
                           )}
                           aria-current={item.current ? 'page' : undefined}
                         >

@@ -89,21 +89,7 @@ const Tanaman = ({}) => {
           {
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' , backgroundColor: 'dark'}}>
           {isOpen && selectedItem && (
-            // <div className={`modal ${isClosing ? 'modal-closing' : ''}`}>
-            //   <div className="modal-content">
-            //     <img src={selectedItem.gambar} alt={selectedItem.nama} style={{width: '200px', height: 'auto'}} />
-            //     <div className="modal-text">
-            //       <h2>{selectedItem.nama}</h2>
-            //       <h4>{selectedItem.jenis}</h4>
-            //       <h4>{selectedItem.daerah}</h4>
-            //       <h4>{selectedItem.harga}</h4>
-            //     </div>
-            //   </div>
-            //   <p>{selectedItem.deskripsi}</p>
-            //   <button onClick={() => { setIsClosing(true); setTimeout(() => {setIsOpen(false); setSelectedItem(null);}, 300); }}>Close</button>
-            // </div>
-
-            <Dialog size="l" open={isOpen} handler={openModal} className='dialog-body'>
+            <Dialog size="l" open={isOpen} handler={openModal} className="dialog-body" title={selectedItem.nama}>
             <DialogHeader className="justify-between">
               <div className="flex items-center gap-1">
                 <Avatar
@@ -192,19 +178,8 @@ const Tanaman = ({}) => {
           </Dialog>
           )}
           {products.slice(0, 5).map((item, index) => (
-            // <button 
-            //   onClick={() => {setSelectedItem(item); setIsOpen(true);}} 
-            //   style={{ border: '', width: '200px', padding: '10px', margin: '5px', flex:'' , backgroundColor:'transparent'}}
-            //   title={item.nama} // This will display the name of the tanaman when the button is hovered over
-            // >
-            //   <img 
-            //     src={item.gambar} 
-            //     alt={item.nama} 
-            //     style={{width: '200px', height: 'auto'}} 
-            //   />
-            // </button>
             <Card
-            className="h-64 w-96 cursor-pointer overflow-hidden transition-opacity hover:opacity-90 m-2"
+            className="h-32 w-48 cursor-pointer overflow-hidden transition-opacity hover:opacity-90 m-2"
             onMouseEnter={() => setIsHovered(index)}
               onMouseLeave={() => setIsHovered(null)}
             onClick={() => {setSelectedItem(item); setIsOpen(true);}}
