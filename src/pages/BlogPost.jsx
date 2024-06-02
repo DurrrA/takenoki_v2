@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import MyNavbar from '../components/navbar';
 import Footer from '../components/footer';
 import './BlogPost.css';
-import Typography from '@material-tailwind/react';
+import {Typography} from '@material-tailwind/react';
 import { Button } from '@material-tailwind/react';
 import btnFeedback from '../card/btnFeedback';
 import { Link } from 'react-router-dom';
@@ -68,7 +68,10 @@ function BlogPost() {
             <div className="md:col-span-2 bg-transparent rounded-lg flex flex-col md:flex-row shadow-md shadow-gray-400">
               <div className="shadow-md rounded-lg overflow-hidden">
                 <div className="container mx-auto p-4">
+                  <div className='flex items-center -space-x-3 justify-between'>
                   <h1 className='mb-5 justify-normal font-sans'>{post.judul}</h1>
+                  <Typography className="text-sm font-lato"> {post.tanggal} </Typography>
+                  </div>
                   <img src={post.gambar} alt={post.nama} className='gap-4 mb-3' />
                   <p className='pl-3 gap-4 font-helvetica'>
                     {post.konten}
