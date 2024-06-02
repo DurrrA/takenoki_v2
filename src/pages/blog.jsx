@@ -29,6 +29,8 @@ const Blog = () => {
   // Fetch and display all blogs with tags
   return (
         <>
+        <div className='flex flex-col min-h-screen'>
+
         <MyNavbar />
         <div className='content mb-6'>
         <div className="container mx-auto p-4">
@@ -55,6 +57,7 @@ const Blog = () => {
         <CardDefault />
         </div>
         <Footer />
+        </div>
         </>
   );
 };
